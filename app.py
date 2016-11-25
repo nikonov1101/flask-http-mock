@@ -7,9 +7,14 @@ app = Flask(__name__)
 def catch_all(path):
     print('Path: %s' % path)
     if request.method == 'POST':
-        print('BODY: %s' % request.data)
-        content_type = request.headers.get('Content-Type')
+        if len(request.data) > 0:
+            print('BODY: %s' % request.data)
+        if len(request.form) > 0:
+            print('FORM: %s' % request.form)
+        if len(request.files) > 0:
+            print('FILES: %s' % request.files)
 
+        content_type = request.headers.get('Content-Type')
         if content_type == 'application/xml':
             return Response('<status>OK</status>', content_type='application/xml')
         elif content_type == 'application/json':
