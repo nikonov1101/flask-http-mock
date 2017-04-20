@@ -5,7 +5,13 @@ app = Flask(__name__)
 @app.route('/', defaults={'path': ''}, methods=('GET', 'POST'))
 @app.route('/<path:path>', methods=('GET', 'POST'))
 def catch_all(path):
-    print('Path: %s' % path)
+    print('******** NEW REQUEST ********')
+    print('PATH: %s' % path)
+    print('HEADERS:')
+
+    for k, v in request.headers.items():
+        print '  %s %s' % (k, v)
+
     if request.method == 'POST':
         if len(request.data) > 0:
             print('BODY: %s' % request.data)
