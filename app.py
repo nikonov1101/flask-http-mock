@@ -10,7 +10,7 @@ def catch_all(path):
     print('HEADERS:')
 
     for k, v in request.headers.items():
-        print '  %s %s' % (k, v)
+        print('  %s %s' % (k, v))
 
     if request.method == 'POST':
         if len(request.data) > 0:
